@@ -1,0 +1,153 @@
+@import 'config.scss';
+
+// All-in-one single property syntax for responsive:
+@mixin resp-single($property-name, $value-desktop, $value-laptop: null, $value-tablet: null, $value-mobile: null) {
+  @if $value-laptop == null { // If only value for desktop was passed, calculate the rest
+    $value-laptop: $value-desktop / 1.5;
+    $value-tablet: $value-desktop / 1.75;
+    $value-mobile: $value-desktop / 2;
+  }
+  @include desktop {
+    #{$property-name}: $value-desktop;
+  }
+  @include laptop {
+    #{$property-name}: $value-laptop;
+  }
+  @include tablet {
+    #{$property-name}: $value-tablet;
+  }
+  @include mobile {
+    #{$property-name}: $value-mobile;
+  }
+}
+
+// Shorthand syntax for responsive:
+@mixin desktop {
+  @include responsive('desktop') {
+    @content;
+  }
+}
+@mixin laptop {
+  @include responsive('laptop') {
+    @content;
+  }
+}
+@mixin tablet {
+  @include responsive('tablet') {
+    @content;
+  }
+}
+@mixin mobile {
+  @include responsive('mobile') {
+    @content;
+  }
+}
+
+// Generate a media query
+// Accepted values for screen size:
+// - mobile: under 599px
+// - tablet: 600 - 1023px
+// - laptop: 1024 - 1599px
+// - desktop: above 1600px
+@mixin responsive($screen-size) {
+  $screen-from: 0;
+  $screen-to: 0;
+  @if $screen-size == 'mobile' {
+    $screen-from: 0;
+    $screen-to: $layout-bp-s - 1px;
+  } @else if $screen-size == 'tablet' {
+    $screen-from: $layout-bp-s;
+    $screen-to: $layout-bp-m - 1px;
+  } @else if $screen-size == 'laptop' {
+    $screen-from: $layout-bp-m;
+    $screen-to: $layout-bp-l - 1px;
+  } @else if $screen-size == 'desktop' {
+    $screen-from: $layout-bp-l;
+    $screen-to: 6000px;
+  } @else {
+    @warn('Error in reponsive usage: invalid value for screen size supplied');
+  }
+  @media only screen and (min-width: $screen-from) and (max-width: $screen-to) {
+    @content;
+  }
+}
+
+// Animations mixins (start and end states defined):
+@mixin fade-in-start {
+  opacity: 0;
+}
+@mixin fade-in-end {
+  opacity: 1;
+}
+@mixin fade-up-start {
+  opacity: 0;
+  transform: translate(0, 30px);
+}
+@mixin fade-up-end {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+@mixin fade-right-start {
+  opacity: 0;
+  transform: translate(-30px, 0);
+}
+@mixin fade-right-end {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+@mixin fade-right-large-start {
+  opacity: 0;
+  transform: translate(-2000px, 0);
+}
+@mixin fade-right-large-end {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+@mixin fade-left-start {
+  opacity: 0;
+  transform: translate(30px, 0);
+}
+@mixin fade-left-end {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+@mixin grow-start {
+  opacity: 0.8;
+  transform: scale(0.5);
+}
+@mixin grow-end {
+  opacity: 1;
+  transform: scale(1);
+}
+@mixin grow-small-start {
+  opacity: 0.8;
+  transform: scale(0.75);
+}
+@mixin grow-small-end {
+  opacity: 1;
+  transform: scale(1);
+}
+@mixin grow-height-start {
+  opacity: 0.4;
+  height: 0;
+}
+@mixin grow-height-end {
+  opacity: 1;
+  height: 100%;
+}
+@mixin grow-height-extended-start {
+  opacity: 0.4;
+  height: 0;
+}
+@mixin grow-height-extended-end {
+  opacity: 1;
+  height: 150%;
+}
+@mixin grow-width-start {
+  opacity: 0.4;
+  width: 0;
+}
+@mixin grow-width-end {
+  opacity: 1;
+  width: 100%;
+}

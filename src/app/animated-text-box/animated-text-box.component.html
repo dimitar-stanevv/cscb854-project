@@ -1,0 +1,10 @@
+<div class="ng-content-wrapper" #ngContentWrapper>
+  <ng-content></ng-content>
+</div>
+<div class="animated-text-wrapper" *ngIf="textReady">
+  <p class="animated-text">
+    <ng-container *ngFor="let dividible of dividibles; let i = index">
+      <span class="custom-anim fade-in" customScrollAnimation="fade-in" [delay]="delay + i * delayMultiplier">{{dividible + (separator == 'word' ? ' ' : '')}}</span>
+    </ng-container>
+  </p>
+</div>

@@ -1,0 +1,55 @@
+@import '/src/colors.scss';
+@import '/src/mixins.scss';
+
+#headerSection {
+  #headerLeft {
+    padding-right: 40px;
+    custom-button {
+      display: block;
+      margin-top: 24px;
+    }
+  }
+  #headerRight {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    img#mainLogo {
+      width: 300px;
+    }
+  }
+}
+
+#page2 {
+  .heading {
+    margin-bottom: 60px;
+  }
+  .text-box {
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+
+  }
+  .card-container {
+    flex: 1;
+    &:not(:last-child) {
+      margin-right: 40px;
+    }
+  }
+}
+
+#page3 {
+  margin-top: 140px;
+  #right {
+    margin-left: 80px;
+  }
+  .card {
+    .card-content {
+      text-align: center;
+      img {
+        width: 96px;
+        filter: grayscale(30%);
+        opacity: 0.8
+      }
+    }
+  }
+}

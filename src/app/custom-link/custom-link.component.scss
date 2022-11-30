@@ -1,0 +1,28 @@
+@import '/src/colors.scss';
+
+a.link {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  &:hover {
+    span {
+      color: $color-accent;
+    }
+    svg path {
+      fill: $color-accent;
+    }
+  }
+  icon {
+    height: 16px;
+    width: 16px;
+    margin-right: 6px;
+    display: inline-block;
+  }
+  span {
+    position: relative;
+    color: $color-gray;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    font-weight: 500;
+  }
+}

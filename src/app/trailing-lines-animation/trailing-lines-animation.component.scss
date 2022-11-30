@@ -1,0 +1,48 @@
+@use 'sass:math';
+@import '/src/colors.scss';
+@import '/src/mixins.scss';
+
+@mixin trailing-line-animation {
+  $animation-number: 0 !default !global;
+  $animation-number: $animation-number + 1 !global;
+  $name: unquote("tl-animation-#{$animation-number}");
+  animation-name: $name;
+  @at-root {
+    @keyframes #{$name} {
+      @content;
+    }
+  }
+}
+
+.trailing-lines {
+  .trailing-line {
+    position: fixed;
+    display: inline-block;
+    height: 1px;
+    background: linear-gradient(rgba($color-light, 30%), transparent);
+    pointer-events: none;
+  }
+  @for $i from 1 through 80 {
+    .trailing-line:nth-child(#{$i}) {
+      width: (80 + random(80)) + px;
+      left: percentage(math.div(math.random(100), 100));
+      top: percentage(math.div(math.random(100), 100));
+      $rotation: math.random(180);
+      transform: rotate($rotation + deg);
+      animation: (3 + math.random(10)) + s ease-in-out;
+      animation-delay: math.random(6) + s;
+      animation-iteration-count: infinite;
+      opacity: 0;
+      @include trailing-line-animation {
+        0% {
+          opacity: 0;
+          transform: rotate($rotation + deg) translateX(-2000px)
+        } 20% {
+          opacity: 1;
+        } 100% {
+          transform: rotate($rotation + deg) translateX(2000px)
+        }
+      }
+    }
+  }
+}

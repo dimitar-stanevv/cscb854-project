@@ -1,0 +1,294 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'colors.scss';
+@import 'mixins.scss';
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('/assets/fonts/Montserrat-VariableFont_wght.ttf') format('truetype-variations');
+  font-weight: 100 900;
+}
+
+@font-face {
+  font-family: 'Consolas';
+  src: url('/assets/fonts/Consolas-Regular.ttf') format('ttf');
+  font-weight: 400;
+  font-style: normal;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(275deg, #2a1f1b, $color-dark 30%, $color-dark);
+  background-size: 300% 100%;
+  // cursor: url('/assets/images/cursor.png'), auto;
+  font-family: 'Montserrat';
+  color: $color-light;
+  margin: 0;
+  padding: 0;
+  animation-name: body-background-gradient;
+  animation-duration: 3s;
+  animation-timing-function: ease-in-out;
+  animation-delay: 1s;
+  animation-fill-mode: forwards;
+}
+
+div, h1, h2, h3, figure, section {
+  margin: 0;
+}
+
+@keyframes body-background-gradient {
+  from {
+    background-position: 0%;
+  } to {
+    background-position: 100%;
+  }
+}
+
+::-moz-selection {
+  color: $color-selection-text;
+  background: $color-selection-background;
+}
+::selection {
+  color: $color-selection-text;
+  background: $color-selection-background;
+}
+
+.code-box {
+  font-family: 'Consolas'
+
+}
+
+.card {
+  border-radius: 1px;
+  background-color: rgba($color-light, 5%);
+  padding: 24px 30px;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  &:before, &:after {
+    opacity: 0;
+    content: '';
+    display: block;
+    width: 75%;
+    height: 75%;
+    position: absolute;
+    transition: top 0.2s bottom 0.2s left 0.2s right 0.2s opacity 0.2s;
+  }
+  &:before {
+    left: 0;
+    top: 0;
+    border-left: 1px solid rgba($color-light, 15%);
+    border-top: 1px solid rgba($color-light, 15%);
+  }
+  &:after {
+    right: 0;
+    bottom: 0;
+    border-right: 1px solid rgba($color-light, 15%);
+    border-bottom: 1px solid rgba($color-light, 15%);
+  }
+  &:hover {
+    &:before, &:after {
+      opacity: 1;
+    }
+    &:before {
+      left: -10px;
+      top: -10px;
+    }
+    &:after {
+      bottom: -10px;
+      right: -10px;
+    }
+    .card-footer {
+      opacity: 1;
+    }
+  }
+  .card-header {
+    text-align: center;
+    img.card-logo {
+      max-height: 40px;
+      margin-bottom: 20px;
+    }
+    strong {
+      color: $color-accent;
+      font-weight: 600;
+      letter-spacing: 0.6px;
+      font-size: 14px;
+      display: block;
+    }
+  }
+  .card-content {
+    margin-top: 12px;
+    p {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 180%;
+      text-align: start;
+    }
+  }
+  .card-footer {
+    opacity: 0.2;
+    margin-left: -30px;
+    margin-bottom: -24px;
+    margin-top: -10px;
+    width: calc(100% + 60px);
+    padding: 24px 28px;
+    position: relative;
+    z-index: 10;
+    cursor: pointer;
+    transition: opacity 0.5s;
+  }
+}
+
+.heading {
+  font-weight: 400;
+  line-height: 140%;
+  text-transform: uppercase;
+  &.centered {
+    text-align: center;
+    &:after {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  strong {
+    color: $color-accent;
+    font-weight: 500;
+  }
+  &:after {
+    display: block;
+    content: '';
+    height: 1px;
+    width: 300px;
+    margin-top: 12px;
+    background-color: $color-accent;
+  }
+}
+
+.text {
+  font-size: 16px;
+  letter-spacing: 0.4px;
+  font-weight: 300;
+  line-height: 160%;
+  text-align: justify;
+  em {
+    opacity: 0.5;
+    font-style: normal;
+  }
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.text-box {
+  position: relative;
+  padding: 14px 30px;
+  margin-bottom: 40px;
+  &:before, &:after {
+    content: '';
+    display: block;
+    position: absolute;
+    height: 75%;
+    width: 75%;
+  }
+  &:before {
+    top: 0;
+    left: 0;
+    border-top: 1px solid rgba($color-light, 30%);
+    border-left: 1px solid rgba($color-light, 30%);
+  }
+  &:after {
+    bottom: 0;
+    right: 0;
+    border-bottom: 1px solid rgba($color-light, 30%);
+    border-right: 1px solid rgba($color-light, 30%);
+  }
+}
+
+.container {
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 20px;
+}
+
+.custom-anim {
+  transition-timing-function: cubic-bezier(0.19, 0.24, 0.1, 1);
+  transition: opacity 1s, transform 1s, height 1s, width 1s;
+  &.fade-in {
+    @include fade-in-start;
+    &.state-end {
+      @include fade-in-end;
+    }
+  }
+  &.fade-up {
+    @include fade-up-start;
+    &.state-end {
+      @include fade-up-end;
+    }
+  }
+  &.fade-left {
+    @include fade-left-start;
+    &.state-end {
+      @include fade-left-end;
+    }
+  }
+  &.fade-right {
+    @include fade-right-start;
+    &.state-end {
+      @include fade-right-end;
+    }
+  }
+  &.fade-right-large {
+    @include fade-right-large-start;
+    &.state-end {
+      @include fade-right-large-end;
+    }
+  }
+  &.grow {
+    @include grow-start;
+    &.state-end {
+      @include grow-end;
+    }
+  }
+  &.grow-small {
+    @include grow-small-start;
+    &.state-end {
+      @include grow-small-end;
+    }
+  }
+  &.grow-height {
+    @include grow-height-start;
+    &.state-end {
+      @include grow-height-end;
+    }
+  }
+  &.grow-height-extended {
+    @include grow-height-extended-start;
+    &.state-end {
+      @include grow-height-extended-end;
+    }
+  }
+  &.grow-width {
+    @include grow-width-start;
+    &.state-end {
+      @include grow-width-end;
+    }
+  }
+}
