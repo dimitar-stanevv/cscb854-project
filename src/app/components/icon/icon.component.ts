@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from "@angular/core";
 
-export type IconType = 'arrow' // Only one icon exists in the project...
-// In a real scenario this would reflect all possible values
+export type IconType =
+    'arrow'
+  | 'code';
 
 @Component({
   selector: 'icon',
@@ -19,6 +20,10 @@ export class IconComponent implements OnInit {
       switch (this.icon) {
         case 'arrow':
           this.iconSource += 'arrow.svg';
+          break;
+        case 'code':
+          this.iconSource += 'code.svg';
+          break;
       }
     }
   }

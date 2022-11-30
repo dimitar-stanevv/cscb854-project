@@ -37,10 +37,19 @@ export class ScrollAnimationDirective implements AfterViewInit, OnInit, OnDestro
   ) { }
 
   /**
-   * At what distance (measured from the top of the window area)
-   * to make the element visible (default = height of the window area)
+   * At what point to make the element visible regarding the
+   * current scroll position. Measured as the distance from top
+   * of the element to the bottom of the window area (in pixels)
+   * Note:
+   * - the minimum sensible value to set is 0px, because
+   *   that's the moment the element's upper edge is exactly at
+   *   the bottom edge of the window area;
+   * - a too large value will be ignored, as the maximum sensible
+   *   value to set is constrained by the height of the window area
+   *   minus 200px (in order to prevent a case where the animation
+   *   would not be triggered due to scrolling the page too fast).
    */
-  @Input() sensitivity: number; // In pixels
+  @Input() sensitivity: number = 100;
 
   /**
    * What animation to use (applied directly when referencing the directive)
@@ -53,23 +62,28 @@ export class ScrollAnimationDirective implements AfterViewInit, OnInit, OnDestro
    * Duration of the animation in milliseconds
    * Under the hood, this is the "transition-duration" CSS property
    * Default is 1000ms (it's provided in CSS)
+   * Negative values are ignored and the default is used instead
    */
-  @Input() duration: number;
+  @Input() duration = 1000;
 
   /**
    * Delay of the animation in milliseconds
-   * Under the hood, this is the "transition-delay" CSS property
-   * Default is 0ms (no delay)
+   * Default is 0ms (no delay) - the animation will be applied
+   * immediately after the element is deemed visible (see "sensitivity")
+   * Negative values are ignored and the default is used instead
    */
-  @Input() delay: number;
+  @Input() delay = 0;
 
   /**
-   * Emit an event when scroll position reaches the sensitive area
-   * (which corresponds to the moment the "end" class is appended,
-   * but will not be the moment the animation starts if transition
-   * delay is greater than zero)
+   * Emit an event when animation starts (which corresponds to
+   * the moment the "end" class is appended)
    */
-  @Output() animationApplied = new EventEmitter<void>();
+  @Output() onAnimationStarted = new EventEmitter<void>();
+
+  /**
+   * Emit an event when animation is completed entirely
+   */
+  @Output() onAnimationCompleted = new EventEmitter<void>();
 
   /**
    * Y-coordinate of element (relative to page top)
@@ -79,9 +93,9 @@ export class ScrollAnimationDirective implements AfterViewInit, OnInit, OnDestro
 
   /**
    * Status of animation - becomes "true" when "animationApplied" event
-   * is emitted
+   * is emitted. Only set to true once, after which tracking stops
    */
-  alreadyAnimated = false;
+  animationApplied = false;
 
   /**
    * Keep the "windowScrolled" function reference for performance
@@ -95,12 +109,6 @@ export class ScrollAnimationDirective implements AfterViewInit, OnInit, OnDestro
     if (this.duration !== undefined && this.duration > 0) {
       this.el.nativeElement.style.transitionDuration = `${this.duration}ms`;
     }
-    if (this.delay !== undefined && this.delay > 0) {
-      this.el.nativeElement.style.transitionDelay = `${this.delay}ms`;
-    }
-    if (this.sensitivity === undefined) {
-      this.sensitivity = window.innerHeight;
-    }
   }
 
   ngAfterViewInit(): void {
@@ -111,16 +119,40 @@ export class ScrollAnimationDirective implements AfterViewInit, OnInit, OnDestro
   }
 
   windowScrolled(): void {
-    if (!this.alreadyAnimated) {
-      const animationRegionReached = window.scrollY + this.sensitivity > this.elementPosition;
+    if (!this.animationApplied) {
+      const animationRegionReached = window.scrollY + (window.innerHeight - this.sensitivity) > this.elementPosition;
       const endOfBodyReached = document.body.scrollHeight <= window.scrollY + window.innerHeight + 100;
+      // Note that in the case the top edge of the element reaches a
+      // point within 200px of the window area's top edge, the animation
+      // will be preliminarily applied, even if the set delay has not yet
+      // passed (in order to show the animation even when scrolling through
+      // the page too fast):
+      const shouldPreliminarilyApplyAnimation = this.elementPosition - 200 < window.scrollY;
       if (animationRegionReached || endOfBodyReached) {
-        this.alreadyAnimated = true;
-        this.el.nativeElement.classList.add('state-end');
-        this.animationApplied.emit();
-        window.removeEventListener('scroll', this.scrollFunctionRef);
+        // Sanitize delay (in case negative value was provided):
+        if (this.delay < 0) {
+          this.delay = 0;
+        }
+        const animationCallback = setTimeout(() => this.applyAnimation(), this.delay);
+        if (shouldPreliminarilyApplyAnimation) {
+          clearTimeout(animationCallback);
+          this.applyAnimation();
+        }
       }
     }
+  }
+
+  /**
+   * Start the transition-based animation. Note that the
+   * onAnimationApplied callback is called immediately after
+   * starting the animation,
+   */
+  applyAnimation() {
+    this.el.nativeElement.classList.add('state-end');
+    this.animationApplied = true;
+    window.removeEventListener('scroll', this.scrollFunctionRef);
+    this.onAnimationStarted.emit();
+    setTimeout(() => this.onAnimationCompleted.emit(), this.duration);
   }
 
   ngOnDestroy(): void {

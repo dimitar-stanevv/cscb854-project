@@ -12,14 +12,14 @@
 </div>
 <div class="page" id="page2">
   <section class="container">
-    <h2 class="heading centered" customScrollAnimation="fade-up" [delay]="200">What's in the box?</h2>
+    <h2 id="test" class="heading centered" customScrollAnimation="fade-up" [delay]="200">What's in the box?</h2>
     <div class="text-box" customScrollAnimation="grow" [delay]="300">
       <p class="text" customScrollAnimation="fade-up" [delay]="600">This project is made as a demonstration of what a simple landing page and/or portfolio could look like in 2022. <em>For a quick overview of the tech stack, see the cards below:</em></p>
     </div>
   </section>
   <section class="container row">
     <div class="card-container" customScrollAnimation="fade-left" [delay]="800">
-      <div class="card">
+      <div class="card clear with-borders">
         <div class="card-header">
           <img class="card-logo" src="/assets/images/netlify-logo.png" alt="Netlify logo" />
           <strong>Serverless deployment</strong>
@@ -33,7 +33,7 @@
       </div>
     </div>
     <div class="card-container" customScrollAnimation="fade-up" [delay]="1000">
-      <div class="card">
+      <div class="card clear with-borders">
         <div class="card-header">
           <img class="card-logo" src="/assets/images/angular-logo.png" alt="Angular logo" />
           <strong>Modern framework</strong>
@@ -41,16 +41,22 @@
         <div class="card-content">
           <p class="text">Angular is used in this project. It's one of the more capable frontend frameworks available today. It uses TypeScript which is a superset of JavaScript and is now almost 10 years old. As such it's very mature and is quite opinionated, unlike React.js, for example.</p>
         </div>
+        <div class="card-footer">
+          <custom-link [linkToURL]="{href: 'https://angular.io/', openInNewTab: true}">Read more... ↗</custom-link>
+        </div>
       </div>
     </div>
     <div class="card-container" customScrollAnimation="fade-right" [delay]="1200">
-      <div class="card">
+      <div class="card clear with-borders">
         <div class="card-header">
           <img class="card-logo" src="/assets/images/sass-logo.png" alt="Sass logo" />
           <strong>Built to impress</strong>
         </div>
         <div class="card-content">
           <p class="text">As the web is becoming more and more sophisticated and congested with web pages, it's more important than ever for designs to stand out. This project incorporates Sass as its style preprocessor and is built around a reusable consistent custom-made theme.</p>
+        </div>
+        <div class="card-footer">
+          <custom-link icon="code">Show me the magic</custom-link>
         </div>
       </div>
     </div>
@@ -67,22 +73,22 @@
       <p class="text" customScrollAnimation="fade-up" [delay]="400">This project has been optimized to work on any Internet-enabled device. The web is the only truly universal platform and as such modern websites need to support a variety of devices, such as phones, tablets, laptops & desktops - above 60% of the Internet traffic goes through mobile devices.</p>
     </section>
     <figure class="grid" id="right">
-      <div class="card">
+      <div class="card with-borders">
         <div class="card-content">
           <img src="/assets/images/smartphone.png" />
         </div>
       </div>
-      <div class="card">
+      <div class="card with-borders-inverted">
         <div class="card-content">
           <img src="/assets/images/tablet.png" />
         </div>
       </div>
-      <div class="card">
+      <div class="card with-borders">
         <div class="card-content">
           <img src="/assets/images/laptop.png" />
         </div>
       </div>
-      <div class="card">
+      <div class="card with-borders-inverted">
         <div class="card-content">
           <img src="/assets/images/desktop.png" />
         </div>

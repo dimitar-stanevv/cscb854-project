@@ -1,6 +1,8 @@
 @import '/src/colors.scss';
 
 a.link {
+  outline: none;
+  text-decoration: none;
   cursor: pointer;
   display: flex;
   align-items: center;
