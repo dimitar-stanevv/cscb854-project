@@ -1,0 +1,3 @@
+<div #inputWrapper class="custom-input-wrapper">
+  <input (focus)="onFocus()" (blur)="onBlur()" [placeholder]="placeholder" type="text" [(ngModel)]="text" (ngModelChange)="updateText($event)" />
+</div>

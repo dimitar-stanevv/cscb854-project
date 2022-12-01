@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'cscb854';
+
+  email = '';
+  emailSent = false;
+
+  sendEmailThroughNetlify() {
+    console.log(this.email);
+    this.emailSent = true;
+    this.email = '';
+    setTimeout(() => this.emailSent = false, 3000);
+  }
 }

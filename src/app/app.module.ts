@@ -11,6 +11,8 @@ import { CustomLinkComponent } from './components/custom-link/custom-link.compon
 import { ScrollAnimationDirective } from './directives/scroll-animation.directive';
 import { IconComponent } from './components/icon/icon.component';
 import { TrailingLinesAnimationComponent } from './components/trailing-lines-animation/trailing-lines-animation.component';
+import { CustomInputComponent } from './components/custom-input/custom-input.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,7 @@ import { TrailingLinesAnimationComponent } from './components/trailing-lines-ani
     TrailingLinesAnimationComponent,
     CustomButtonComponent,
     CustomLinkComponent,
+    CustomInputComponent,
     IconComponent,
     AnimatedTextBoxComponent,
     ScrollAnimationDirective
@@ -25,6 +28,7 @@ import { TrailingLinesAnimationComponent } from './components/trailing-lines-ani
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     HttpClientModule,
     AngularSvgIconModule.forRoot()
   ],

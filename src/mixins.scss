@@ -151,3 +151,13 @@
   opacity: 1;
   width: 100%;
 }
+@mixin blur-start {
+  opacity: 0.4;
+  transform: scale(4);
+  filter: blur(40px);
+}
+@mixin blur-end {
+  opacity: 1;
+  transform: scale(1);
+  filter: blur(0px);
+}

@@ -38,6 +38,29 @@
 }
 
 #page3 {
+  .container.row {
+    figure {
+      margin-left: 80px;
+      padding-top: 40px;
+      img {
+        max-width: 360px;
+        opacity: 0.1;
+      }
+    }
+  }
+  #netlifyTestForm {
+    margin-top: 20px;
+    custom-input {
+      width: 270px;
+      display: block;
+    }
+    button {
+      margin-left: 20px;
+    }
+  }
+}
+
+#page4 {
   margin-top: 140px;
   #right {
     margin-left: 80px;

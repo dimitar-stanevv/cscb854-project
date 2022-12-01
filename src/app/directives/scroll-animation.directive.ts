@@ -21,10 +21,11 @@ import { AfterViewInit,
   | 'grow-small'
   | 'grow-height'
   | 'grow-height-extended'
-  | 'grow-width';
+  | 'grow-width'
+  | 'blur';
 
 @Directive({
-  selector: '[customScrollAnimation]'
+  selector: '[scrollAnimation]'
 })
 /**
  * @description Apply a transition animation for the element
@@ -53,10 +54,10 @@ export class ScrollAnimationDirective implements AfterViewInit, OnInit, OnDestro
 
   /**
    * What animation to use (applied directly when referencing the directive)
-   * Eg. <h1 customScrollAnimation="fade-up">Some title</h1>
+   * Eg. <h1 scrollAnimation="fade-up">Some title</h1>
    * See ScrollAnimationType to see the possible values
    */
-  @Input() customScrollAnimation: ScrollAnimationType
+  @Input() scrollAnimation: ScrollAnimationType
 
   /**
    * Duration of the animation in milliseconds
@@ -105,7 +106,7 @@ export class ScrollAnimationDirective implements AfterViewInit, OnInit, OnDestro
 
   ngOnInit(): void {
     this.el.nativeElement.classList.add('custom-anim');
-    this.el.nativeElement.classList.add(this.customScrollAnimation);
+    this.el.nativeElement.classList.add(this.scrollAnimation);
     if (this.duration !== undefined && this.duration > 0) {
       this.el.nativeElement.style.transitionDuration = `${this.duration}ms`;
     }

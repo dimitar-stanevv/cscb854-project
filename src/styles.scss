@@ -55,9 +55,67 @@ div, h1, h2, h3, figure, section {
   background: $color-selection-background;
 }
 
-.code-box {
-  font-family: 'Consolas'
+button {
+  height: 44px;
+  border: 0;
+  cursor: pointer;
+  outline: none;
+  background-color: $color-accent;
+  color: white;
+  padding: 0 24px;
+  border-radius: 1px;
+  font-family: 'Montserrat';
+  letter-spacing: 0.8px;
+  font-weight: 500;
+  opacity: 0.7;
+  transition: all 0.08s;
+  &.state-done {
+    background-color: rgb(31, 163, 31);
+    pointer-events: none;
+    color: white;
+  }
+  &:disabled {
+    background-color: $color-selection-background;
+    pointer-events: none;
+  }
+  &:hover {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  &:active {
+    transform: scale(0.9);
+    opacity: 0.3;
+  }
+}
 
+.code-box {
+  font-family: 'Consolas';
+  background-color: rgba($color-light, 5%);
+  color: $color-light;
+  border-radius: 1px;
+  padding: 8px;
+  padding-left: 30px;
+  line-height: 22px;
+  font-size: 16px;
+  position: relative;
+  .line {
+    @for $i from 1 through 10 {
+      &:nth-child(#{$i}) {
+        &:before {
+          content: '' + $i;
+        }
+      }
+      &:before {
+        position: absolute;
+        left: 10px;
+        color: rgb(110, 164, 240);
+      }
+    }
+    &.comment {
+      color: $color-gray;
+      opacity: 0.5;
+    }
+  }
 }
 
 .card {
@@ -175,6 +233,16 @@ div, h1, h2, h3, figure, section {
   }
 }
 
+.title {
+  font-size: 40px;
+  font-weight: 200;
+  color: $color-gray;
+  strong {
+    font-weight: 400;
+    color: white;
+  }
+}
+
 .heading {
   font-weight: 400;
   line-height: 140%;
@@ -264,7 +332,7 @@ div, h1, h2, h3, figure, section {
 
 .custom-anim {
   transition-timing-function: cubic-bezier(0.19, 0.24, 0.1, 1);
-  transition: opacity 1s, transform 1s, height 1s, width 1s;
+  transition: opacity 1s, transform 1s, height 1s, width 1s, filter 1s;
   &.fade-in {
     @include fade-in-start;
     &.state-end {
@@ -323,6 +391,12 @@ div, h1, h2, h3, figure, section {
     @include grow-width-start;
     &.state-end {
       @include grow-width-end;
+    }
+  }
+  &.blur {
+    @include blur-start;
+    &.state-end {
+      @include blur-end;
     }
   }
 }

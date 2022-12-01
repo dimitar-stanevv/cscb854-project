@@ -1,24 +1,24 @@
 <div class="page" id="page1">
   <section class="container row" id="headerSection">
     <div id="headerLeft">
-      <h1 class="heading" customScrollAnimation="fade-right">A university project<br />for <strong customScrollAnimation="fade-in" [delay]="200">demonstration</strong> purposes</h1>
-      <p class="text" customScrollAnimation="fade-up" [delay]="400">This project serves as a demo for some of the web's modern technologies. It combines a mobile-friendly design and a present-day tech stack with some of the newest principles in web development to create a truly pleasant user experience.</p>
-      <custom-button customScrollAnimation="fade-in" [delay]="2000">See more...</custom-button>
+      <h1 class="heading" scrollAnimation="fade-right">A university project<br />for <strong scrollAnimation="fade-in" [delay]="200">demonstration</strong> purposes</h1>
+      <p class="text" scrollAnimation="fade-up" [delay]="400">This project serves as a demo for some of the web's modern technologies. It combines a mobile-friendly design and a present-day tech stack with some of the newest principles in web development to create a truly pleasant user experience.</p>
+      <custom-button scrollAnimation="fade-in" [delay]="2000">See more...</custom-button>
     </div>
-    <figure id="headerRight" customScrollAnimation="fade-left" [delay]="600">
+    <figure id="headerRight" scrollAnimation="fade-left" [delay]="600">
       <img id="mainLogo" src="/assets/images/cscb854_logo.png" />
     </figure>
   </section>
 </div>
 <div class="page" id="page2">
   <section class="container">
-    <h2 id="test" class="heading centered" customScrollAnimation="fade-up" [delay]="200">What's in the box?</h2>
-    <div class="text-box" customScrollAnimation="grow" [delay]="300">
-      <p class="text" customScrollAnimation="fade-up" [delay]="600">This project is made as a demonstration of what a simple landing page and/or portfolio could look like in 2022. <em>For a quick overview of the tech stack, see the cards below:</em></p>
+    <h2 id="test" class="heading centered" scrollAnimation="fade-up" [delay]="200">What's in the box?</h2>
+    <div class="text-box" scrollAnimation="grow" [delay]="300">
+      <p class="text" scrollAnimation="fade-up" [delay]="600">This project is made as a demonstration of what a simple landing page and/or portfolio could look like in 2022. <em>For a quick overview of the tech stack, see the cards below:</em></p>
     </div>
   </section>
   <section class="container row">
-    <div class="card-container" customScrollAnimation="fade-left" [delay]="800">
+    <div class="card-container" scrollAnimation="fade-left" [delay]="800">
       <div class="card clear with-borders">
         <div class="card-header">
           <img class="card-logo" src="/assets/images/netlify-logo.png" alt="Netlify logo" />
@@ -32,7 +32,7 @@
         </div>
       </div>
     </div>
-    <div class="card-container" customScrollAnimation="fade-up" [delay]="1000">
+    <div class="card-container" scrollAnimation="fade-up" [delay]="1000">
       <div class="card clear with-borders">
         <div class="card-header">
           <img class="card-logo" src="/assets/images/angular-logo.png" alt="Angular logo" />
@@ -46,7 +46,7 @@
         </div>
       </div>
     </div>
-    <div class="card-container" customScrollAnimation="fade-right" [delay]="1200">
+    <div class="card-container" scrollAnimation="fade-right" [delay]="1200">
       <div class="card clear with-borders">
         <div class="card-header">
           <img class="card-logo" src="/assets/images/sass-logo.png" alt="Sass logo" />
@@ -65,12 +65,34 @@
 <div class="page" id="page3">
   <section class="container row">
     <section>
+      <h2 class="title">Serverless development with <strong>Netlify.</strong></h2>
+      <p class="text">
+        Serverless is a cloud-native development model that allows developers to build and run applications without having to manage servers. There are still servers in serverless, but they are abstracted away from app development.</p>
+      <p class="text"><em>You can test out a sample lambda function below:</em></p>
+      <div class="row" id="netlifyTestForm">
+        <custom-input [(text)]="email" placeholder="Enter your email..."></custom-input>
+        <button [class.state-done]="emailSent" [disabled]="!email && !emailSent" (click)="sendEmailThroughNetlify()">{{emailSent ? '✓ Done.' : 'Mail me ↗'}}</button>
+      </div>
+    </section>
+    <figure>
+      <img scrollAnimation="blur" [duration]="2000" src="/assets/images/cloud-computing.png" alt="Cloud computing" />
+    </figure>
+  </section>
+</div>
+<div class="page" id="page4">
+  <section class="container row">
+    <section>
       <h2 class="heading">
-        <span customScrollAnimation="fade-right" [delay]="200">Ready for the modern web.</span>
+        <span scrollAnimation="fade-right" [delay]="200">Ready for the modern web.</span>
         <br />
-        <span customScrollAnimation="fade-in" [delay]="1600">And for <strong>modern devices, too.</strong></span>
+        <span scrollAnimation="fade-in" [delay]="1600">And for <strong>modern devices, too.</strong></span>
       </h2>
-      <p class="text" customScrollAnimation="fade-up" [delay]="400">This project has been optimized to work on any Internet-enabled device. The web is the only truly universal platform and as such modern websites need to support a variety of devices, such as phones, tablets, laptops & desktops - above 60% of the Internet traffic goes through mobile devices.</p>
+      <p class="text" scrollAnimation="fade-up" [delay]="400">This project has been optimized to work on any Internet-enabled device. The web is the only truly universal platform and as such modern websites need to support a variety of devices, such as phones, tablets, laptops & desktops - above 60% of the Internet traffic goes through mobile devices.</p>
+      <div class="code-box">
+        <div class="line">var a = 'abc';</div>
+        <div class="line comment">// Sample comment</div>
+        <div class="line">setTimeout(() => test(), 500);</div>
+      </div>
     </section>
     <figure class="grid" id="right">
       <div class="card with-borders">
