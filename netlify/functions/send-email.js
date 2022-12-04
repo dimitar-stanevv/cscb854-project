@@ -1,20 +1,15 @@
 const sib = require('sib-api-v3-sdk');
-const test = process.env.NETLIFY_EMAILS_SECRET;
+const sibKey = process.env.NETLIFY_EMAILS_SECRET;
 
 exports.handler = async (event, context, callback) => {
-  console.log('test: ' + test);
   // Prepare SIB client:
   const client = sib.ApiClient.instance;
   const apiKey = client.authentications['api-key'];
-  apiKey.apiKey = process.env.SIB_API_KEY;
+  apiKey.apiKey = sibKey;
   const emailAPI = new sib.TransactionalEmailsApi();
   const sender = {
     email: 'dimitar.stanev@test.com',
     name: 'Dimitar Stanev',
-  };
-  return {
-    statusCode: 200,
-    body: 'key = ' + test
   };
   const data = JSON.parse(event.body);
   try {
@@ -35,7 +30,7 @@ exports.handler = async (event, context, callback) => {
       body: 'Success'
     };
   } catch (error) {
-    console.log('Err', error);
+    console.log('Error', error);
     return {
       statusCode: error.statusCode || 500,
       body: JSON.stringify({
