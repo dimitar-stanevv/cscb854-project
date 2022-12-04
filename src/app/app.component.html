@@ -3,14 +3,14 @@
     <div id="headerLeft">
       <h1 class="heading" scrollAnimation="fade-right">A university project<br />for <strong scrollAnimation="fade-in" [delay]="200">demonstration</strong> purposes</h1>
       <p class="text" scrollAnimation="fade-up" [delay]="400">This project serves as a demo for some of the web's modern technologies. It combines a mobile-friendly design and a present-day tech stack with some of the newest principles in web development to create a truly pleasant user experience.</p>
-      <custom-button scrollAnimation="fade-in" [delay]="2000">See more...</custom-button>
+      <custom-button (onClick)="scrollToPage2()" scrollAnimation="fade-in" [delay]="2000">See more...</custom-button>
     </div>
     <figure id="headerRight" scrollAnimation="fade-left" [delay]="600">
       <img id="mainLogo" src="/assets/images/cscb854_logo.png" />
     </figure>
   </section>
 </div>
-<div class="page" id="page2">
+<div class="page" id="page2" #page2>
   <section class="container">
     <h2 id="test" class="heading centered" scrollAnimation="fade-up" [delay]="200">What's in the box?</h2>
     <div class="text-box" scrollAnimation="grow" [delay]="300">
@@ -28,7 +28,7 @@
           <p class="text">Netlify allows us to seamlessly and automatically deploy the project directly from a GitHub repository upon a commit, for example. Going "serverless" can be categorized as a fairly modern approach. Simple lambda functions can also be used with Netlify for backend tasks such as authentication.</p>
         </div>
         <div class="card-footer">
-          <custom-link icon="arrow">How does it work?</custom-link>
+          <custom-link (onClick)="scrollToPage3()" icon="arrow">How does it work?</custom-link>
         </div>
       </div>
     </div>
@@ -56,30 +56,31 @@
           <p class="text">As the web is becoming more and more sophisticated and congested with web pages, it's more important than ever for designs to stand out. This project incorporates Sass as its style preprocessor and is built around a reusable consistent custom-made theme.</p>
         </div>
         <div class="card-footer">
-          <custom-link icon="code">Show me the magic</custom-link>
+          <custom-link (onClick)="scrollToPage4()" icon="code">Show me something cool</custom-link>
         </div>
       </div>
     </div>
   </section>
 </div>
-<div class="page" id="page3">
+<div class="page" id="page3" #page3>
   <section class="container row">
     <section>
       <h2 class="title">Serverless development with <strong>Netlify.</strong></h2>
       <p class="text">
         Serverless is a cloud-native development model that allows developers to build and run applications without having to manage servers. There are still servers in serverless, but they are abstracted away from app development.</p>
-      <p class="text"><em>You can test out a sample lambda function below:</em></p>
+      <p class="text"><em>You can test out a sample lambda function below. Be sure to check your spam folder as this is a test email and it can trigger some spam filters.</em></p>
       <div class="row" id="netlifyTestForm">
-        <custom-input [(text)]="email" placeholder="Enter your email..."></custom-input>
-        <button [class.state-done]="emailSent" [disabled]="!email && !emailSent" (click)="sendEmailThroughNetlify()">{{emailSent ? '✓ Done.' : 'Mail me ↗'}}</button>
+        <custom-input [hasError]="!emailIsValid && email !== ''" [(text)]="email" (textChange)="updateEmail($event)" placeholder="Enter your email..."></custom-input>
+        <button [class.state-done]="emailSent" [disabled]="!emailIsValid && !emailSent" (click)="sendEmailThroughNetlify()">{{emailSent ? '✓ Done.' : 'Mail me ↗'}}</button>
       </div>
+      <div *ngIf="emailError" class="error-text">A server error has occured when sending your email. Sorry!</div>
     </section>
     <figure>
       <img scrollAnimation="blur" [duration]="2000" src="/assets/images/cloud-computing.png" alt="Cloud computing" />
     </figure>
   </section>
 </div>
-<div class="page" id="page4">
+<div class="page" id="page4" #page4>
   <section class="container row">
     <section class="section-left">
       <h2 class="heading">
@@ -138,5 +139,14 @@
       </p>
     </div>
   </div>
+</div>
+<div id="page5">
+  <section class="container row">
+    <section>
+      <h2 class="title">You have reached the end.</h2>
+      <p class="text">
+        This is the end of the demo project. Scroll to the top and reload the page to see the animations again. <br /><strong>Hope you liked it 😊</strong></p>
+    </section>
+  </section>
 </div>
 <!-- <trailing-lines-animation></trailing-lines-animation> -->

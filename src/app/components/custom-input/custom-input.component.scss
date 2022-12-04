@@ -4,6 +4,14 @@
   position: relative;
   height: 44px;
   cursor: text;
+  &.has-error {
+    &:before, &:after {
+      border-color: crimson!important;
+    }
+    input {
+      color: crimson!important;
+    }
+  }
   &.focused {
     &:before, &:after {
       border-color: rgba($color-light, 100%);

@@ -19,9 +19,14 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: linear-gradient(275deg, #2a1f1b, $color-dark 30%, $color-dark);
   background-size: 300% 100%;
+  overflow-x: hidden;
   // cursor: url('/assets/images/cursor.png'), auto;
   font-family: 'Montserrat';
   color: $color-light;
@@ -89,7 +94,7 @@ button {
 }
 
 .code-box {
-  font-family: 'Consolas';
+  font-family: 'Consolas', monospace;
   background-color: rgba($color-light, 2%);
   color: $color-light;
   border-radius: 1px;
@@ -411,5 +416,22 @@ button {
     &.state-end {
       @include blur-end;
     }
+  }
+}
+
+.error-text {
+  color: crimson;
+  font-size: 13px;
+  font-weight: 700;
+  margin-top: 16px;
+  letter-spacing: 0.5px;
+  &:before {
+    content: '';
+    height: 8px;
+    width: 8px;
+    display: inline-block;
+    background-color: crimson;
+    border-radius: 50%;
+    margin-right: 8px;
   }
 }

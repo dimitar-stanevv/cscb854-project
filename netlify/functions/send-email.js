@@ -2,6 +2,14 @@ const sib = require('sib-api-v3-sdk');
 const sibKey = process.env.NETLIFY_EMAILS_SECRET;
 
 exports.handler = async (event, context, callback) => {
+  const recipient = JSON.parse(event.body).recipient;
+  const emailIsValid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(recipient);
+  if (!emailIsValid) {
+    return {
+      statusCode: 400,
+      body: 'Invalid recipient e-mail supplied'
+    };
+  }
   // Prepare SIB client:
   const client = sib.ApiClient.instance;
   const apiKey = client.authentications['api-key'];
@@ -11,13 +19,12 @@ exports.handler = async (event, context, callback) => {
     email: 'dimitar.stanev@test.com',
     name: 'Dimitar Stanev',
   };
-  const data = JSON.parse(event.body);
   try {
     // Send email to recicipent:
     const emailContent = "You are awesome! This is a demo email you have requested 💪";
     await emailAPI.sendTransacEmail({
       sender,
-      to: [{ email: data.recipient }],
+      to: [{ email: recipient }],
       subject: 'CSCB854 Demo Project',
       textContent: emailContent,
       htmlContent: emailContent,
@@ -27,10 +34,9 @@ exports.handler = async (event, context, callback) => {
     });
     return {
       statusCode: 200,
-      body: 'Success'
+      body: 'Email sent successfully!'
     };
   } catch (error) {
-    console.log('Error', error);
     return {
       statusCode: error.statusCode || 500,
       body: JSON.stringify({

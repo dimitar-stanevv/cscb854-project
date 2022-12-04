@@ -13,6 +13,8 @@ export class CustomInputComponent {
 
   @Input() placeholder: string;
 
+  @Input() hasError: boolean;
+
   updateText(newText: string) {
     this.textChange.emit(newText);
   }

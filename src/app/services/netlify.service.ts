@@ -9,7 +9,6 @@ export class NetlifyService {
   constructor(private http: HttpClient) { }
 
   sendMail(emailAddress: string): Promise<any> {
-    // TODO: Add validation
     return lastValueFrom(this.http.post('/.netlify/functions/send-email', {
       recipient: emailAddress
     }));
