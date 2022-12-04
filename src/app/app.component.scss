@@ -4,6 +4,9 @@
 #headerSection {
   #headerLeft {
     padding-right: 40px;
+    @include mobile {
+      padding-right: 0;
+    }
     custom-button {
       display: block;
       margin-top: 24px;
@@ -15,6 +18,22 @@
     justify-content: center;
     img#mainLogo {
       width: 300px;
+      @include tablet {
+        width: 160px;
+      }
+      @include mobile {
+        width: 200px;
+      }
+    }
+  }
+  @include mobile {
+    #headerLeft {
+      order: 2;
+    }
+    #headerRight {
+      order: 1;
+      align-items: center;
+      margin-bottom: 40px;
     }
   }
 }
@@ -33,15 +52,40 @@
     flex: 1;
     &:not(:last-child) {
       margin-right: 40px;
+      @include mobile {
+        margin-right: 0;
+        margin-bottom: 20px;
+      }
     }
   }
 }
 
 #page3 {
+  margin: 90px 0;
+  @include mobile {
+    margin: 40px 0;
+    #serverlessSection {
+      > section {
+        order: 2;
+      }
+      > figure {
+        order: 1;
+        margin-bottom: 40px;
+        margin-left: 0;
+        text-align: center;
+        img {
+          max-width: 100%;
+        }
+      }
+    }
+  }
   .container.row {
     figure {
       margin-left: 80px;
       padding-top: 40px;
+      @include mobile {
+        padding-top: 0;
+      }
       img {
         max-width: 360px;
         opacity: 0.1;
@@ -52,16 +96,26 @@
     margin-top: 20px;
     custom-input {
       width: 270px;
+      @include mobile {
+        width: 100%;
+      }
       display: block;
     }
     button {
       margin-left: 20px;
+      @include mobile {
+        margin-left: 0;
+        margin-top: 20px;
+      }
     }
   }
 }
 
 #page4 {
   margin-top: 140px;
+  @include mobile {
+    margin-top: 40px;
+  }
   .container.row {
     align-items: center;
     margin-bottom: 20px;
@@ -72,16 +126,25 @@
   .section-left {
     p {
       padding-right: 40px;
+      @include mobile {
+        padding-right: 0;
+      }
     }
   }
   .section-right {
     margin-left: 20px;
+    @include mobile {
+      margin-left: 0;
+    }
   }
   .card {
     .card-content {
       text-align: center;
       img {
         width: 96px;
+        @include mobile {
+          width: 64px;
+        }
         filter: grayscale(30%);
         opacity: 0.8
       }
@@ -96,6 +159,11 @@
   .grid {
     display: grid;
     grid-template-columns: auto auto auto auto;
+    @include tablet {
+      grid-template-columns: auto auto;
+    } @include mobile {
+      grid-template-columns: auto auto;
+    }
     gap: 20px;
   }
 }

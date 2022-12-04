@@ -84,7 +84,7 @@ button {
     pointer-events: none;
   }
   &:hover {
-    transform: scale(1.2);
+    transform: scale(1.1);
     opacity: 1;
   }
   &:active {
@@ -297,6 +297,9 @@ button {
 .row {
   display: flex;
   flex-direction: row;
+  @include mobile {
+    flex-direction: column;
+  }
 }
 
 .page {
@@ -345,7 +348,7 @@ button {
   max-width: 1000px;
   width: 100%;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 40px;
 }
 
 .custom-anim {
