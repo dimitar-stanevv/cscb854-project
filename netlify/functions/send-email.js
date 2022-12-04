@@ -5,7 +5,7 @@ exports.handler = async (event, context, callback) => {
   // Prepare SIB client:
   const client = sib.ApiClient.instance;
   const apiKey = client.authentications['api-key'];
-  apiKey.apiKey = sibKey;
+  apiKey.apiKey = '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';
   const emailAPI = new sib.TransactionalEmailsApi();
   const sender = {
     email: 'dimitar.stanev@test.com',
@@ -15,7 +15,7 @@ exports.handler = async (event, context, callback) => {
   try {
     // Send email to recicipent:
     const emailContent = "You are awesome! This is a demo email you have requested 💪";
-    emailAPI.sendTransacEmail({
+    await emailAPI.sendTransacEmail({
       sender,
       to: [{ email: data.recipient }],
       subject: 'CSCB854 Demo Project',
