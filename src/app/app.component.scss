@@ -62,8 +62,20 @@
 
 #page4 {
   margin-top: 140px;
-  #right {
-    margin-left: 80px;
+  .container.row {
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .section-left, .section-right {
+    flex: 1;
+  }
+  .section-left {
+    p {
+      padding-right: 40px;
+    }
+  }
+  .section-right {
+    margin-left: 20px;
   }
   .card {
     .card-content {
@@ -74,5 +86,16 @@
         opacity: 0.8
       }
     }
+  }
+  .text-box {
+    margin-top: 80px;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 500px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 20px;
   }
 }

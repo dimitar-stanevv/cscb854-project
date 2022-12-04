@@ -81,20 +81,33 @@
 </div>
 <div class="page" id="page4">
   <section class="container row">
-    <section>
+    <section class="section-left">
       <h2 class="heading">
         <span scrollAnimation="fade-right" [delay]="200">Ready for the modern web.</span>
         <br />
         <span scrollAnimation="fade-in" [delay]="1600">And for <strong>modern devices, too.</strong></span>
       </h2>
       <p class="text" scrollAnimation="fade-up" [delay]="400">This project has been optimized to work on any Internet-enabled device. The web is the only truly universal platform and as such modern websites need to support a variety of devices, such as phones, tablets, laptops & desktops - above 60% of the Internet traffic goes through mobile devices.</p>
+    </section>
+    <section class="section-right">
       <div class="code-box">
-        <div class="line">var a = 'abc';</div>
-        <div class="line comment">// Sample comment</div>
-        <div class="line">setTimeout(() => test(), 500);</div>
+        <div class="line comment">// Use the `responsive` mixin to apply styles</div>
+        <div class="line comment">// for a particular device</div>
+        <div class="line">.my-heading &#123;</div>
+        <div class="line">&nbsp;&nbsp;<strong>font-size</strong>: <em>48px</em>;</div>
+        <div class="line">&nbsp;&nbsp;<strong>@include</strong> responsive(<em>'mobile'</em>) &#123;</div>
+        <div class="line">&nbsp;&nbsp;&nbsp;&nbsp;<strong>font-size</strong>: <em>24px</em>;</div>
+        <div class="line">&nbsp;&nbsp;&#125;</div>
+        <div class="line comment">&nbsp;&nbsp;// Or use the shorthand syntax:</div>
+        <div class="line">&nbsp;&nbsp;<strong>@include</strong> mobile &#123;</div>
+        <div class="line">&nbsp;&nbsp;&nbsp;&nbsp;<strong>font-size</strong>: <em>24px</em>;</div>
+        <div class="line">&nbsp;&nbsp;&#125;</div>
+        <div class="line">&#125;</div>
       </div>
     </section>
-    <figure class="grid" id="right">
+  </section>
+  <section class="container">
+    <figure class="grid">
       <div class="card with-borders">
         <div class="card-content">
           <img src="/assets/images/smartphone.png" />
@@ -117,5 +130,13 @@
       </div>
     </figure>
   </section>
+  <div class="container">
+    <div class="text-box" scrollAnimation="grow" [delay]="300">
+      <div class="highlight">Fun fact</div>
+      <p class="text" scrollAnimation="fade-up" [delay]="600">
+        The composition above (with the desktop, laptop, phone & tablet graphics) is actually made using a CSS3 grid. The CSS Grid Layout Module offers a grid-based layout system, with rows and columns, making it easier to design web pages without having to use floats and positioning.
+      </p>
+    </div>
+  </div>
 </div>
 <!-- <trailing-lines-animation></trailing-lines-animation> -->

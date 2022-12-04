@@ -70,7 +70,7 @@ button {
   opacity: 0.7;
   transition: all 0.08s;
   &.state-done {
-    background-color: rgb(31, 163, 31);
+    background-color: rgb(104, 188, 85);
     pointer-events: none;
     color: white;
   }
@@ -90,16 +90,16 @@ button {
 
 .code-box {
   font-family: 'Consolas';
-  background-color: rgba($color-light, 5%);
+  background-color: rgba($color-light, 2%);
   color: $color-light;
   border-radius: 1px;
-  padding: 8px;
-  padding-left: 30px;
+  padding: 20px 8px;
+  padding-left: 48px;
   line-height: 22px;
   font-size: 16px;
   position: relative;
   .line {
-    @for $i from 1 through 10 {
+    @for $i from 1 through 20 {
       &:nth-child(#{$i}) {
         &:before {
           content: '' + $i;
@@ -109,11 +109,20 @@ button {
         position: absolute;
         left: 10px;
         color: rgb(110, 164, 240);
+        width: 22px;
+        text-align: right;
       }
     }
     &.comment {
       color: $color-gray;
-      opacity: 0.5;
+      color: rgba($color-gray, 50%);
+    }
+    strong {
+      color: crimson;
+    }
+    em {
+      color: rgb(104, 188, 85);
+      font-style: normal;
     }
   }
 }
@@ -315,6 +324,16 @@ button {
     border-bottom: 1px solid rgba($color-light, 30%);
     border-right: 1px solid rgba($color-light, 30%);
   }
+  .highlight {
+    text-align: center;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 12px;
+    margin-bottom: 12px;
+    margin-top: 8px;
+    color: white;
+    font-weight: 500;
+  }
 }
 
 .container {
@@ -322,12 +341,6 @@ button {
   width: 100%;
   margin: 0 auto;
   padding: 0 20px;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: auto auto;
-  gap: 20px;
 }
 
 .custom-anim {
