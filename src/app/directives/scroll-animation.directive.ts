@@ -76,13 +76,6 @@ export class ScrollAnimationDirective implements AfterViewInit, OnInit, OnDestro
   @Input() delay = 0;
 
   /**
-   * Set the debug flag to true to output useful debug
-   * info when scrolling elements into view
-   * TODO: Remove on production builds
-   */
-  @Input() debug = false;
-
-  /**
    * Emit an event when animation starts (which corresponds to
    * the moment the "end" class is appended)
    */
@@ -110,6 +103,10 @@ export class ScrollAnimationDirective implements AfterViewInit, OnInit, OnDestro
    */
   scrollFunctionRef: any;
 
+  /**
+   * Keep the animation callback function
+   * reference
+   */
   animationCallback: any;
 
   ngOnInit(): void {
@@ -121,7 +118,6 @@ export class ScrollAnimationDirective implements AfterViewInit, OnInit, OnDestro
   }
 
   ngAfterViewInit(): void {
-    //this.windowScrolled(); // Perform an initial check for elements that are in the initial viewing area
     this.scrollFunctionRef = this.windowScrolled.bind(this);
     window.addEventListener('scroll', this.scrollFunctionRef);
   }
@@ -160,9 +156,6 @@ export class ScrollAnimationDirective implements AfterViewInit, OnInit, OnDestro
    * starting the animation,
    */
   applyAnimation() {
-    if (this.debug) {
-      console.log('Animation started!');
-    }
     this.el.nativeElement.classList.add('state-end');
     this.animationApplied = true;
     window.removeEventListener('scroll', this.scrollFunctionRef);
