@@ -24,7 +24,7 @@
   }
   @for $i from 1 through 80 {
     .trailing-line:nth-child(#{$i}) {
-      width: (80 + random(80)) + px;
+      width: (180 + random(100)) + px;
       left: percentage(math.div(math.random(100), 100));
       top: percentage(math.div(math.random(100), 100));
       $rotation: math.random(180);
