@@ -20,7 +20,7 @@
 }
 
 html {
-  //scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
@@ -101,7 +101,11 @@ button {
   padding: 20px 8px;
   padding-left: 48px;
   line-height: 22px;
-  font-size: 16px;
+  font-size: 14px;
+  @include mobile {
+    font-size: 12px;
+    padding-left: 40px;
+  }
   position: relative;
   .line {
     @for $i from 1 through 20 {
@@ -113,6 +117,9 @@ button {
       &:before {
         position: absolute;
         left: 10px;
+        @include mobile {
+          left: 4px;
+        }
         color: rgb(110, 164, 240);
         width: 22px;
         text-align: right;
@@ -258,6 +265,10 @@ button {
 }
 
 .heading {
+  font-size: 24px;
+  @include mobile {
+    font-size: 20px;
+  }
   font-weight: 400;
   line-height: 140%;
   text-transform: uppercase;
@@ -354,6 +365,9 @@ button {
   width: 100%;
   margin: 0 auto;
   padding: 0 40px;
+  @include mobile {
+    padding: 0 20px;
+  }
 }
 
 .custom-anim {

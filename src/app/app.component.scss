@@ -2,6 +2,10 @@
 @import '/src/mixins.scss';
 
 #headerSection {
+  @include mobile {
+    margin-top: 30px;
+    margin-bottom: 60px;
+  }
   #headerLeft {
     padding-right: 40px;
     @include mobile {
@@ -146,6 +150,11 @@
       }
       .section-right {
         margin-left: 0;
+        width: 100%;
+      }
+    }
+    @include mobile {
+      .section-right {
         width: 100%;
       }
     }
