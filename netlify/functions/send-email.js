@@ -7,7 +7,9 @@ exports.handler = async (event, context, callback) => {
   if (!emailIsValid) {
     return {
       statusCode: 400,
-      body: 'Invalid recipient e-mail supplied'
+      body: JSON.stringify({
+        error: 'Invalid recipient e-mail supplied'
+      })
     };
   }
   // Prepare SIB client:
@@ -34,7 +36,9 @@ exports.handler = async (event, context, callback) => {
     });
     return {
       statusCode: 200,
-      body: 'Email sent successfully!'
+      body: JSON.stringify({
+        message: 'Email sent successfully!'
+      })
     };
   } catch (error) {
     return {
