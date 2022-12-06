@@ -33,10 +33,11 @@ export class AppComponent {
       await this.netlifyService.sendMail(this.email);
       this.emailSent = true;
       this.emailError = false;
-      this.email = '';
-      setTimeout(() => this.emailSent = false, 3000);
+      setTimeout(() => {
+        this.emailSent = false;
+        this.email = '';
+      }, 3000);
     } catch (error) {
-      console.log(error);
       this.emailError = true;
     }
   }
