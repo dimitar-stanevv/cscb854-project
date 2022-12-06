@@ -20,7 +20,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  //scroll-behavior: smooth;
 }
 
 body {
@@ -263,7 +263,7 @@ button {
   text-transform: uppercase;
   &.centered {
     text-align: center;
-    &:after {
+    .line-wrapper .line {
       margin-left: auto;
       margin-right: auto;
     }
@@ -272,13 +272,18 @@ button {
     color: $color-accent;
     font-weight: 500;
   }
-  &:after {
-    display: block;
-    content: '';
-    height: 1px;
-    width: 300px;
-    margin-top: 12px;
-    background-color: $color-accent;
+  .line-wrapper {
+    overflow: hidden;
+    .line {
+      display: block;
+      height: 1px;
+      width: 300px;
+      @include mobile {
+        width: 100%;
+      }
+      background-color: $color-accent;
+      margin-top: 12px;
+    }
   }
 }
 

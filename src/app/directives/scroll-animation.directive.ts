@@ -76,6 +76,13 @@ export class ScrollAnimationDirective implements AfterViewInit, OnInit, OnDestro
   @Input() delay = 0;
 
   /**
+   * Set the debug flag to true to output useful debug
+   * info when scrolling elements into view
+   * TODO: Remove on production builds
+   */
+  @Input() debug = false;
+
+  /**
    * Emit an event when animation starts (which corresponds to
    * the moment the "end" class is appended)
    */
@@ -88,7 +95,6 @@ export class ScrollAnimationDirective implements AfterViewInit, OnInit, OnDestro
 
   /**
    * Y-coordinate of element (relative to page top)
-   * Calculated on ngAfterViewInit lifecycle hook
    */
   elementPosition: number;
 
@@ -104,6 +110,8 @@ export class ScrollAnimationDirective implements AfterViewInit, OnInit, OnDestro
    */
   scrollFunctionRef: any;
 
+  animationCallback: any;
+
   ngOnInit(): void {
     this.el.nativeElement.classList.add('custom-anim');
     this.el.nativeElement.classList.add(this.scrollAnimation);
@@ -113,30 +121,33 @@ export class ScrollAnimationDirective implements AfterViewInit, OnInit, OnDestro
   }
 
   ngAfterViewInit(): void {
-    this.elementPosition = this.el.nativeElement.getBoundingClientRect().top + window.scrollY;
-    this.windowScrolled(); // Perform an initial check for elements that are in the initial viewing area
+    //this.windowScrolled(); // Perform an initial check for elements that are in the initial viewing area
     this.scrollFunctionRef = this.windowScrolled.bind(this);
     window.addEventListener('scroll', this.scrollFunctionRef);
   }
 
   windowScrolled(): void {
     if (!this.animationApplied) {
+      this.elementPosition = this.el.nativeElement.getBoundingClientRect().top + window.scrollY;
       const animationRegionReached = window.scrollY + (window.innerHeight - this.sensitivity) > this.elementPosition;
-      const endOfBodyReached = document.body.scrollHeight <= window.scrollY + window.innerHeight + 100;
+      const endOfBodyReached = false;//document.body.scrollHeight <= window.scrollY + window.innerHeight + 100;
       // Note that in the case the top edge of the element reaches a
       // point within 200px of the window area's top edge, the animation
       // will be preliminarily applied, even if the set delay has not yet
       // passed (in order to show the animation even when scrolling through
       // the page too fast):
-      const shouldPreliminarilyApplyAnimation = this.elementPosition - 200 < window.scrollY;
+      const shouldPreliminarilyApplyAnimation = this.elementPosition - 100 < window.scrollY;
       if (animationRegionReached || endOfBodyReached) {
         // Sanitize delay (in case negative value was provided):
         if (this.delay < 0) {
           this.delay = 0;
         }
-        const animationCallback = setTimeout(() => this.applyAnimation(), this.delay);
+        if (!this.animationCallback) {
+          this.animationCallback = setTimeout(() => this.applyAnimation(), this.delay);
+        }
         if (shouldPreliminarilyApplyAnimation) {
-          clearTimeout(animationCallback);
+          console.log('Preliminarily applying animation...');
+          clearTimeout(this.animationCallback);
           this.applyAnimation();
         }
       }
@@ -149,6 +160,9 @@ export class ScrollAnimationDirective implements AfterViewInit, OnInit, OnDestro
    * starting the animation,
    */
   applyAnimation() {
+    if (this.debug) {
+      console.log('Animation started!');
+    }
     this.el.nativeElement.classList.add('state-end');
     this.animationApplied = true;
     window.removeEventListener('scroll', this.scrollFunctionRef);

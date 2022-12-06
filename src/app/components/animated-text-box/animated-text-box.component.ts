@@ -26,6 +26,8 @@ export class AnimatedTextBoxComponent implements AfterViewInit {
    */
   @Input() separator: 'word' | 'char' = 'word';
 
+  @Input() sensitivity = 100;
+
   @ViewChild('ngContentWrapper') contentWrapper: ElementRef<HTMLDivElement>;
   dividibles: string[]; // Either words or characters
 

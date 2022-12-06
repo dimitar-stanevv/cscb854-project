@@ -1,7 +1,8 @@
 <div class="page" id="page1">
   <section class="container row" id="headerSection">
     <div id="headerLeft">
-      <h1 class="heading" scrollAnimation="fade-right">A university project<br />for <strong scrollAnimation="fade-in" [delay]="200">demonstration</strong> purposes</h1>
+      <h1 class="heading" scrollAnimation="fade-right">A university project<br />for <strong scrollAnimation="fade-in" [delay]="200">demonstration</strong> purposes
+      <div class="line-wrapper" scrollAnimation="grow-width" [delay]="400"><div class="line"></div></div></h1>
       <p class="text" scrollAnimation="fade-up" [delay]="400">This project serves as a demo for some of the web's modern technologies. It combines a mobile-friendly design and a present-day tech stack with some of the newest principles in web development to create a truly pleasant user experience.</p>
       <custom-button (onClick)="scrollToPage2()" scrollAnimation="fade-in" [delay]="2000">See more...</custom-button>
     </div>
@@ -12,7 +13,7 @@
 </div>
 <div id="page2" #page2>
   <section class="container">
-    <h2 id="test" class="heading centered" scrollAnimation="fade-up" [delay]="200">What's in the box?</h2>
+    <h2 id="test" class="heading centered" scrollAnimation="fade-up" [delay]="200">What's in the box?<div class="line-wrapper" scrollAnimation="grow-width" [delay]="400"><div class="line"></div></div></h2>
     <div class="text-box" scrollAnimation="grow" [delay]="300">
       <p class="text" scrollAnimation="fade-up" [delay]="600">This project is made as a demonstration of what a simple landing page and/or portfolio could look like in 2022. <em>For a quick overview of the tech stack, see the cards below:</em></p>
     </div>
@@ -65,18 +66,18 @@
 <div id="page3" #page3>
   <section id="serverlessSection" class="container row">
     <section>
-      <h2 class="title">Serverless development with <strong>Netlify.</strong></h2>
-      <p class="text">
+      <h2 class="title" scrollAnimation="fade-right" [delay]="200">Serverless development with <strong>Netlify.</strong></h2>
+      <p class="text" scrollAnimation="fade-right" [delay]="500">
         Serverless is a cloud-native development model that allows developers to build and run applications without having to manage servers. There are still servers in serverless, but they are abstracted away from app development.</p>
-      <p class="text"><em>You can test out a sample lambda function below. Be sure to check your spam folder as this is a test email and it can trigger some spam filters.</em></p>
+      <p class="text" scrollAnimation="fade-right" [delay]="800"><em>You can test out a sample lambda function below. Be sure to check your spam folder as this is a test email and it can trigger some spam filters.</em></p>
       <div class="row" id="netlifyTestForm">
-        <custom-input [hasError]="!emailIsValid && email !== ''" [(text)]="email" (textChange)="updateEmail($event)" placeholder="Enter your email..."></custom-input>
-        <button [class.state-done]="emailSent" [disabled]="!emailIsValid && !emailSent" (click)="sendEmailThroughNetlify()">{{emailSent ? '✓ Done.' : 'Mail me ↗'}}</button>
+        <custom-input scrollAnimation="fade-up" [delay]="1100" [hasError]="!emailIsValid && email !== ''" [(text)]="email" (textChange)="updateEmail($event)" placeholder="Enter your email..."></custom-input>
+        <button scrollAnimation="fade-up" [delay]="1400" [class.state-done]="emailSent" [disabled]="!emailIsValid && !emailSent" (click)="sendEmailThroughNetlify()">{{emailSent ? '✓ Done.' : 'Mail me ↗'}}</button>
       </div>
       <div *ngIf="emailError" class="error-text">A server error has occured when sending your email. Sorry!</div>
     </section>
     <figure>
-      <img scrollAnimation="blur" [duration]="2000" src="/assets/images/cloud-computing.png" alt="Cloud computing" />
+      <img scrollAnimation="blur" [duration]="2000" [delay]="500" src="/assets/images/cloud-computing.png" alt="Cloud computing" />
     </figure>
   </section>
 </div>
@@ -87,11 +88,12 @@
         <span scrollAnimation="fade-right" [delay]="200">Ready for the modern web.</span>
         <br />
         <span scrollAnimation="fade-in" [delay]="1600">And for <strong>modern devices, too.</strong></span>
+        <div class="line-wrapper" scrollAnimation="grow-width" [delay]="1800"><div class="line"></div></div>
       </h2>
-      <p class="text" scrollAnimation="fade-up" [delay]="400">This project has been optimized to work on any Internet-enabled device. The web is the only truly universal platform and as such modern websites need to support a variety of devices, such as phones, tablets, laptops & desktops - above 60% of the Internet traffic goes through mobile devices.</p>
+      <p class="text" scrollAnimation="fade-up" [delay]="500">This project has been optimized to work on any Internet-enabled device. The web is the only truly universal platform and as such modern websites need to support a variety of devices, such as phones, tablets, laptops & desktops - above 60% of the Internet traffic goes through mobile devices.</p>
     </section>
     <section class="section-right">
-      <div class="code-box">
+      <div scrollAnimation="blur" [duration]="1000" [delay]="500" class="code-box">
         <div class="line comment">// Use the `responsive` mixin to apply styles</div>
         <div class="line comment">// for a particular device</div>
         <div class="line">.my-heading &#123;</div>
@@ -109,22 +111,22 @@
   </section>
   <section class="container">
     <figure class="grid">
-      <div class="card with-borders">
+      <div class="card with-borders" scrollAnimation="fade-in" [delay]="900">
         <div class="card-content">
           <img src="/assets/images/smartphone.png" />
         </div>
       </div>
-      <div class="card with-borders-inverted">
+      <div class="card with-borders-inverted" scrollAnimation="fade-in" [delay]="1000">
         <div class="card-content">
           <img src="/assets/images/tablet.png" />
         </div>
       </div>
-      <div class="card with-borders">
+      <div class="card with-borders" scrollAnimation="fade-in" [delay]="1100">
         <div class="card-content">
           <img src="/assets/images/laptop.png" />
         </div>
       </div>
-      <div class="card with-borders-inverted">
+      <div class="card with-borders-inverted" scrollAnimation="fade-in" [delay]="1200">
         <div class="card-content">
           <img src="/assets/images/desktop.png" />
         </div>
@@ -143,9 +145,13 @@
 <div id="page5">
   <section class="container row">
     <section>
-      <h2 class="title">You have reached the end.</h2>
-      <p class="text">
-        This is the end of the demo project. Scroll to the top and reload the page to see the animations again. <br /><strong>Hope you liked it 😊</strong></p>
+      <h2 class="title" scrollAnimation="fade-up" [delay]="500">You have reached the end.</h2>
+      <animated-text-box>
+        This is the end of the demo project. No external libraries were used for the UI - all is custom. Scroll to the top and reload the page to see the animations again.
+      </animated-text-box>
+      <p class="text" scrollAnimation="fade-in" [delay]="2000">
+        <strong>Hope you liked it 😊</strong>
+      </p>
     </section>
   </section>
 </div>

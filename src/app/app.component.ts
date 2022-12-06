@@ -18,6 +18,10 @@ export class AppComponent {
   emailIsValid = false;
   emailError = false;
 
+  ngAfterViewInit() {
+    window.scrollBy(0, 1);
+  }
+
   updateEmail(newEmail: string) {
     // Validate email address:
     this.emailIsValid = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(newEmail);
