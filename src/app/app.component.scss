@@ -48,6 +48,17 @@
     margin-right: auto;
 
   }
+  .feature-cards {
+    @include tablet {
+      flex-direction: column;
+      .card-container {
+        margin-right: 0;
+        &:not(:last-child) {
+          margin-bottom: 30px;
+        }
+      }
+    }
+  }
   .card-container {
     flex: 1;
     &:not(:last-child) {
@@ -76,6 +87,20 @@
         img {
           max-width: 100%;
         }
+      }
+    }
+  }
+  #serverlessSection {
+    position: relative;
+    @include tablet {
+      > section > h2 {
+        padding-right: 100px;
+      }
+      > figure > img {
+        position: absolute;
+        top: -20px;
+        right: 0;
+        width: 200px;
       }
     }
   }
@@ -113,6 +138,18 @@
 
 #page4 {
   margin-top: 140px;
+  .code-row {
+    @include tablet {
+      flex-direction: column;
+      .section-left p {
+        padding-right: 0;
+      }
+      .section-right {
+        margin-left: 0;
+        width: 100%;
+      }
+    }
+  }
   @include mobile {
     margin-top: 40px;
   }
