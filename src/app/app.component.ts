@@ -36,6 +36,7 @@ export class AppComponent {
       this.email = '';
       setTimeout(() => this.emailSent = false, 3000);
     } catch (error) {
+      console.log(error);
       this.emailError = true;
     }
   }

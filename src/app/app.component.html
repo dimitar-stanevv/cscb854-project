@@ -71,8 +71,8 @@
         Serverless is a cloud-native development model that allows developers to build and run applications without having to manage servers. There are still servers in serverless, but they are abstracted away from app development.</p>
       <p class="text" scrollAnimation="fade-right" [delay]="800"><em>You can test out a sample lambda function below. Be sure to check your spam folder as this is a test email and it can trigger some spam filters.</em></p>
       <div class="row" id="netlifyTestForm">
-        <custom-input scrollAnimation="fade-up" [delay]="1100" [hasError]="!emailIsValid && email !== ''" [(text)]="email" (textChange)="updateEmail($event)" placeholder="Enter your email..."></custom-input>
-        <button scrollAnimation="fade-up" [delay]="1400" [class.state-done]="emailSent" [disabled]="!emailIsValid && !emailSent" (click)="sendEmailThroughNetlify()">{{emailSent ? '✓ Done.' : 'Mail me ↗'}}</button>
+        <custom-input scrollAnimation="fade-up" [delay]="1700" [duration]="200" [hasError]="!emailIsValid && email !== ''" [(text)]="email" (textChange)="updateEmail($event)" placeholder="Enter your email..."></custom-input>
+        <button scrollAnimation="fade-up" [delay]="1900" [class.state-done]="emailSent" [disabled]="!emailIsValid && !emailSent" (click)="sendEmailThroughNetlify()">{{emailSent ? '✓ Done.' : 'Mail me ↗'}}</button>
       </div>
       <div *ngIf="emailError" class="error-text">A server error has occured when sending your email. Sorry!</div>
     </section>

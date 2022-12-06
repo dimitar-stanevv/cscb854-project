@@ -132,7 +132,7 @@ export class ScrollAnimationDirective implements AfterViewInit, OnInit, OnDestro
       // will be preliminarily applied, even if the set delay has not yet
       // passed (in order to show the animation even when scrolling through
       // the page too fast):
-      const shouldPreliminarilyApplyAnimation = this.elementPosition - 100 < window.scrollY;
+      const shouldPreliminarilyApplyAnimation = this.elementPosition - 200 < window.scrollY;
       if (animationRegionReached || endOfBodyReached) {
         // Sanitize delay (in case negative value was provided):
         if (this.delay < 0) {
